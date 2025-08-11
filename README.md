@@ -53,8 +53,8 @@ The platform uses a custom BERT-based sentiment analysis model that:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/ai-sentiment-analyzer.git
-   cd ai-sentiment-analyzer
+   git clone https://github.com/CodeByHashir/AI-Powered-Sentiment-Analysis-.git
+   cd AI-Powered-Sentiment-Analysis-
    ```
 
 2. Install dependencies:
@@ -179,4 +179,4 @@ MIT License
 - [Supabase](https://supabase.com/) for the serverless backend
 - [React](https://reactjs.org/) for the frontend framework
 - [TailwindCSS](https://tailwindcss.com/) for styling
-- [BERT Models](https://huggingface.co/) for AI-powered sentiment analysis 
+- [BERT Models](https://huggingface.co/) for AI-powered sentiment analysis
