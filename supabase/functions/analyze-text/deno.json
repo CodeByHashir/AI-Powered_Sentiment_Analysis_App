@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "test": "deno run --allow-read --allow-net --allow-env --allow-write test.ts"
+  },
+  "imports": {
+    "std/": "https://deno.land/std@0.168.0/"
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["deno.window", "dom"],
+    "strict": true
+  }
+} 
