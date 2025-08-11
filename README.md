@@ -62,18 +62,32 @@ The platform uses a custom BERT-based sentiment analysis model that:
    npm install
    ```
 
-3. Set up environment variables:
+3. **Download the BERT Model File:**
+   
+   The BERT model file (`model.safetensors`) is too large for GitHub. You need to download it separately:
+   
+   **Option A: Download from our model repository**
+   - Download `model.safetensors` from: [Model Download Link]
+   - Place it in: `supabase/functions/analyze-text/model/`
+   
+   **Option B: Use your existing model**
+   - If you have the model file locally, copy it to: `supabase/functions/analyze-text/model/`
+   
+   **File size:** ~417 MB
+   **Required location:** `supabase/functions/analyze-text/model/model.safetensors`
+
+4. Set up environment variables:
    ```
    cp .env.example .env.local
    ```
    Edit `.env.local` with your Supabase URL and anon key
 
-4. Run development server:
+5. Run development server:
    ```
    npm run dev
    ```
 
-5. In a separate terminal, run the Edge Function locally:
+6. In a separate terminal, run the Edge Function locally:
    ```
    cd supabase/functions/analyze-text
    deno run --allow-read --allow-net --allow-env index.ts
@@ -137,10 +151,13 @@ supabase functions deploy analyze-text
 │   └── functions/
 │       └── analyze-text/ # Edge Function for sentiment analysis
 │           ├── index.ts  # Entry point for Edge Function
-│           └── model.ts  # Sentiment analysis model implementation
+│           ├── model.ts  # Sentiment analysis model implementation
+│           └── model/    # BERT model files (model.safetensors not included - see Installation)
 ├── public/               # Static assets
 └── index.html            # HTML template
 ```
+
+**Note:** The `model.safetensors` file (417 MB) is not included in this repository due to GitHub's file size limits. See Installation section for download instructions.
 
 ## Core Capabilities
 
