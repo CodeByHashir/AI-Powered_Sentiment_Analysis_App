@@ -2,7 +2,7 @@
 export const config = {
   // YouTube API
   youtube: {
-    apiKey: import.meta.env.VITE_YOUTUBE_API_KEY || 'AIzaSyDRh9pvZUvW7jCxKKslIHd7Pv_8cC7V7uM',
+    apiKey: import.meta.env.VITE_YOUTUBE_API_KEY || 'YOUR_API_KEY',
     apiBase: 'https://www.googleapis.com/youtube/v3'
   },
   
