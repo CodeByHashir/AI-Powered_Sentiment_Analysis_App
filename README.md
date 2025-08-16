@@ -7,6 +7,9 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)
 ![Supabase](https://img.shields.io/badge/Supabase-Edge%20Functions-orange)
 
+
+![S1](https://github.com/user-attachments/assets/194d138b-c587-4cae-84df-82c6bd11741b)
+
 ## ✨ Features
 
 ### 🎯 **Core Analytics**
@@ -236,7 +239,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **YouTube Data API** - Video analytics and metadata
-- **Hugging Face** - AI-powered sentiment analysis
+- **BERT Model Face** - AI-powered sentiment analysis, See MODEL_SETUP.md guide
 - **Supabase** - Backend infrastructure and edge functions
 - **Recharts** - Professional data visualization
 - **Tailwind CSS** - Utility-first CSS framework
@@ -253,9 +256,10 @@ For support and questions:
 **⭐ Star this repository if you found it helpful!**
 
 **🔗 Connect with me:**
-- Portfolio: [Your Portfolio URL]
-- LinkedIn: [Your LinkedIn]
-- GitHub: [Your GitHub]
+- Portfolio: [[Your Portfolio URL](https://www.hashirahmed.com/)]
+- LinkedIn: [[Your LinkedIn](https://www.linkedin.com/in/hashirahmed07/)]
+- GitHub: [[Your GitHub](https://github.com/CodeByHashir)]
+- Whatsapp: +44 07879 3299 09
 
 ---
 
