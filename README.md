@@ -108,11 +108,9 @@ VITE_MODEL_PATH=./models/sentiment-bert
 
 ## 📸 Screenshots
 
-![Dashboard Overview](./screenshots/dashboard-overview.png)
-![Performance Analysis](./screenshots/dashboard-performance.png)
-![Comparative Analysis](./screenshots/comparative-analysis.png)
+> **📸 Screenshots Coming Soon**: High-quality UI screenshots will be added to showcase the dashboard features, performance analytics, and comparative analysis interface.
 
-*See [screenshots/](./screenshots/) folder for more UI examples*
+*Check the [screenshots/](./screenshots/) folder for upcoming visual examples*
 ```
 
 ## 📁 Project Structure
