@@ -105,6 +105,14 @@ VITE_USE_CUSTOM_MODEL=true
 VITE_MODEL_PATH=./models/sentiment-bert
 
 > **📥 Model Setup Required**: This project uses a custom-trained BERT model (417.67 MB). See [MODEL_SETUP.md](./MODEL_SETUP.md) for download and installation instructions.
+
+## 📸 Screenshots
+
+![Dashboard Overview](./screenshots/dashboard-overview.png)
+![Performance Analysis](./screenshots/dashboard-performance.png)
+![Comparative Analysis](./screenshots/comparative-analysis.png)
+
+*See [screenshots/](./screenshots/) folder for more UI examples*
 ```
 
 ## 📁 Project Structure
