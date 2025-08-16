@@ -275,7 +275,8 @@ Screenshots, mockups, etc.
 - **GitHub Issues** - Bug reports and feature requests
 - **Discussions** - General questions and ideas
 - **Pull Requests** - Code review and feedback
-- **Email** - Direct communication (if needed)
+- **Email** - Hashirahmad330@gmail.com
+- **Contact** - 07879329909
 
 ### **Resources**
 - **Project Documentation** - README, SETUP, etc.
