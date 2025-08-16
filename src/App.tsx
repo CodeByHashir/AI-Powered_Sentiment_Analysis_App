@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import { SentimentAnalysis, SentimentCategory, TextAnalysisRequest, ComparativeAnalysis } from './types';
+import { SentimentAnalysis, SentimentCategory, ComparativeAnalysis } from './types';
 import SearchForm from './components/SearchForm';
-import TextAnalysisForm from './components/TextAnalysisForm';
+
 import AnalysisResult from './components/AnalysisResult';
 import { SentimentDashboard } from './components/SentimentDashboard';
 import { ComparativeAnalysis as ComparativeAnalysisComponent } from './components/ComparativeAnalysis';
@@ -79,23 +79,7 @@ function App() {
     }
   };
 
-  const handleTextAnalysis = async (request: TextAnalysisRequest) => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      // Use real API service to analyze text
-      const result = await SentimentApiService.analyzeText(request);
-      
-      setAnalysisResult(result);
-      setAnalysisHistory(prev => [result, ...prev.slice(0, 4)]); // Keep last 5 analyses
-    } catch (err) {
-      console.error('Error in text analysis:', err);
-      setError('Failed to analyze text. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+
 
   const resetAnalysis = () => {
     setAnalysisResult(null);
@@ -201,9 +185,8 @@ function App() {
         {activeTab === 'analysis' && (
           <>
             {/* Analysis Forms */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 gap-8 mb-8">
               <SearchForm onSubmit={handleAnalyze} isLoading={isLoading} />
-              <TextAnalysisForm onSubmit={handleTextAnalysis} isLoading={isLoading} />
             </div>
 
             {/* Analysis Results */}
@@ -289,7 +272,6 @@ function App() {
         {activeTab === 'dashboard' && analysisResult && (
           <SentimentDashboard
             analysis={analysisResult}
-            onExport={handleExport}
           />
         )}
 

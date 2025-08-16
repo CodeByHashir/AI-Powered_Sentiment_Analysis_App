@@ -271,11 +271,156 @@ export class ExportService {
         </div>
         ` : ''}
         
-        ${options.includeAnalysis && analysis.summary ? `
+        ${analysis.metadata ? `
         <div style="margin-bottom: 30px;">
-          <h2 style="color: #1f2937; font-size: 22px; margin-bottom: 15px;">AI Summary</h2>
+          <h2 style="color: #1f2937; font-size: 22px; margin-bottom: 15px;">Content Performance Metrics</h2>
           <div style="background: #f9fafb; padding: 20px; border-radius: 8px;">
-            <p style="margin: 0; color: #1f2937; font-size: 16px; line-height: 1.6;">${analysis.summary}</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+              ${analysis.metadata.views ? `
+              <div style="text-align: center; background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                <div style="font-weight: 600; color: #1f2937; font-size: 16px;">${analysis.metadata.views.toLocaleString()}</div>
+                <div style="color: #6b7280; font-size: 12px;">Total Views</div>
+              </div>
+              ` : ''}
+              ${analysis.metadata.likes ? `
+              <div style="text-align: center; background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                <div style="font-weight: 600; color: #1f2937; font-size: 16px;">${analysis.metadata.likes.toLocaleString()}</div>
+                <div style="color: #6b7280; font-size: 12px;">Likes</div>
+              </div>
+              ` : ''}
+              ${analysis.metadata.dislikes ? `
+              <div style="text-align: center; background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                <div style="font-weight: 600; color: #1f2937; font-size: 16px;">${analysis.metadata.dislikes.toLocaleString()}</div>
+                <div style="color: #6b7280; font-size: 12px;">Dislikes</div>
+              </div>
+              ` : ''}
+              ${analysis.metadata.commentCount ? `
+              <div style="text-align: center; background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                <div style="font-weight: 600; color: #1f2937; font-size: 16px;">${analysis.metadata.commentCount.toLocaleString()}</div>
+                <div style="color: #6b7280; font-size: 12px;">Comments</div>
+              </div>
+              ` : ''}
+              ${analysis.metadata.duration ? `
+              <div style="text-align: center; background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                <div style="font-weight: 600; color: #1f2937; font-size: 16px;">${Math.round(analysis.metadata.duration / 60)}:${(analysis.metadata.duration % 60).toString().padStart(2, '0')}</div>
+                <div style="color: #6b7280; font-size: 12px;">Duration</div>
+              </div>
+              ` : ''}
+              ${analysis.metadata.channel ? `
+              <div style="text-align: center; background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                <div style="font-weight: 600; color: #1f2937; font-size: 16px;">${analysis.metadata.channel}</div>
+                <div style="color: #6b7280; font-size: 12px;">Channel</div>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+        ` : ''}
+        
+        ${options.includeAnalysis && analysis.topLovedPoints && analysis.topLovedPoints.length > 0 ? `
+        <div style="margin-bottom: 30px;">
+          <h2 style="color: #1f2937; font-size: 22px; margin-bottom: 15px;">Most Loved Points</h2>
+          <div style="background: #f9fafb; padding: 20px; border-radius: 8px;">
+            <div style="space-y: 3;">
+              ${analysis.topLovedPoints.map((point, index) => 
+                `<div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb; margin-bottom: 10px;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px; margin-bottom: 5px;">${index + 1}. ${point}</div>
+                </div>`
+              ).join('')}
+            </div>
+          </div>
+        </div>
+        ` : ''}
+        
+        ${options.includeAnalysis && analysis.topCriticizedPoints && analysis.topCriticizedPoints.length > 0 ? `
+        <div style="margin-bottom: 30px;">
+          <h2 style="color: #1f2937; font-size: 22px; margin-bottom: 15px;">Areas for Improvement</h2>
+          <div style="background: #f9fafb; padding: 20px; border-radius: 8px;">
+            <div style="space-y: 3;">
+              ${analysis.topCriticizedPoints.map((point, index) => 
+                `<div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb; margin-bottom: 10px;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px; margin-bottom: 5px;">${index + 1}. ${point}</div>
+                </div>`
+              ).join('')}
+            </div>
+          </div>
+        </div>
+        ` : ''}
+        
+        ${options.includeAnalysis ? `
+        <div style="margin-bottom: 30px;">
+          <h2 style="color: #1f2937; font-size: 22px; margin-bottom: 15px;">Detailed Sentiment Analysis</h2>
+          <div style="background: #f9fafb; padding: 20px; border-radius: 8px;">
+            ${analysis.emotionDistribution ? `
+            <div style="margin-bottom: 20px;">
+              <h3 style="color: #374151; font-size: 18px; margin-bottom: 10px;">Emotion Distribution</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+                ${Object.entries(analysis.emotionDistribution).map(([emotion, value]) => 
+                  `<div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                    <div style="font-weight: 600; color: #1f2937; font-size: 14px;">${emotion.charAt(0).toUpperCase() + emotion.slice(1)}</div>
+                    <div style="color: #6b7280; font-size: 12px;">${(value * 100).toFixed(1)}%</div>
+                  </div>`
+                ).join('')}
+              </div>
+            </div>
+            ` : ''}
+            
+            ${analysis.toxicitySummary ? `
+            <div style="margin-bottom: 20px;">
+              <h3 style="color: #374151; font-size: 18px; margin-bottom: 10px;">Toxicity Analysis</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Hate Speech</div>
+                  <div style="color: #6b7280; font-size: 12px;">${(analysis.toxicitySummary.hate_speech * 100).toFixed(1)}%</div>
+                </div>
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Spam</div>
+                  <div style="color: #6b7280; font-size: 12px;">${(analysis.toxicitySummary.spam * 100).toFixed(1)}%</div>
+                </div>
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Offensive</div>
+                  <div style="color: #6b7280; font-size: 12px;">${(analysis.toxicitySummary.offensive * 100).toFixed(1)}%</div>
+                </div>
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Overall</div>
+                  <div style="color: #6b7280; font-size: 12px;">${(analysis.toxicitySummary.overall * 100).toFixed(1)}%</div>
+                </div>
+              </div>
+            </div>
+            ` : ''}
+            
+            ${analysis.commentStats ? `
+            <div style="margin-bottom: 20px;">
+              <h3 style="color: #374151; font-size: 18px; margin-bottom: 10px;">Comment Analysis</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Total Comments</div>
+                  <div style="color: #6b7280; font-size: 12px;">${analysis.commentStats.total}</div>
+                </div>
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Positive</div>
+                  <div style="color: #6b7280; font-size: 12px;">${analysis.commentStats.positive}</div>
+                </div>
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Negative</div>
+                  <div style="color: #6b7280; font-size: 12px;">${analysis.commentStats.negative}</div>
+                </div>
+                <div style="text-align: center; background: white; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                  <div style="font-weight: 600; color: #1f2937; font-size: 14px;">Neutral</div>
+                  <div style="color: #6b7280; font-size: 12px;">${analysis.commentStats.neutral}</div>
+                </div>
+              </div>
+            </div>
+            ` : ''}
+            
+            ${analysis.summary ? `
+            <div style="margin-bottom: 20px;">
+              <h3 style="color: #374151; font-size: 18px; margin-bottom: 10px;">AI Generated Summary</h3>
+              <div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #e5e7eb;">
+                <p style="margin: 0; color: #1f2937; font-size: 14px; line-height: 1.6;">${analysis.summary}</p>
+              </div>
+            </div>
+            ` : ''}
           </div>
         </div>
         ` : ''}

@@ -1,24 +1,54 @@
 # Dependencies
 node_modules/
-.pnp
-.pnp.js
-
-# Production builds
-dist/
-build/
-
-# Environment files (protect API keys)
-.env
-.env.local
-.env.production
-.env.development
-
-# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+
+# Large AI Model Files
+*.safetensors
+*.bin
+*.onnx
+*.pkl
+*.h5
+*.pb
+model.safetensors
+models/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Dependencies (will be regenerated)
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
 
 # Runtime data
 pids
@@ -68,6 +98,10 @@ jspm_packages/
 .nuxt
 dist
 
+# Gatsby files
+.cache/
+public
+
 # Storybook build outputs
 .out
 .storybook-out
@@ -76,48 +110,35 @@ dist
 tmp/
 temp/
 
-# Editor directories and files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Large model files (handled by Git LFS)
-# *.safetensors
-# *.bin
-# *.h5
-*.pkl
-*.joblib
-
-# Supabase
+# Supabase local development
 .supabase/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-.venv/
-ENV/
-env.bak/
-venv.bak/
+# Large media files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mkv
 
-# Deno
-.deno_dir/
-deno.lock
+# Large data files
+*.csv
+*.json
+*.xml
+*.sql
+*.db
+*.sqlite
 
-# Bolt
-.bolt/
+# Archive files
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Executable files
+*.exe
+*.msi
+*.dmg
+*.pkg

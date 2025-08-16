@@ -1,199 +1,262 @@
-# AI Sentiment Analyzer
+# 🚀 Advanced Sentiment Analysis Dashboard
 
-A focused AI platform that analyzes sentiment from text and YouTube content using advanced BERT models.
+> **Professional-grade content analytics platform with real-time insights, AI-powered recommendations, and interactive visualizations.**
 
-![AI Sentiment Analyzer Screenshot](screenshot.png)
+![Dashboard Preview](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
+![React](https://img.shields.io/badge/React-18.0+-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)
+![Supabase](https://img.shields.io/badge/Supabase-Edge%20Functions-orange)
 
-## Overview
+## ✨ Features
 
-This AI platform provides comprehensive sentiment analysis for:
-- **General text input** - Direct text analysis with confidence scoring
-- **YouTube comments** - Community sentiment analysis from video comments
-- **YouTube video transcripts** - Content sentiment analysis from video transcripts
+### 🎯 **Core Analytics**
+- **Real-time Sentiment Analysis** - Live content sentiment scoring
+- **Advanced Performance Metrics** - Engagement rates, viral potential, brand safety
+- **Interactive Visualizations** - Radar charts, area charts, bar charts
+- **AI-Powered Insights** - Content recommendations and strategy optimization
 
-## Features
+### 📊 **Dashboard Capabilities**
+- **Performance Scoring** - 0-100 content quality assessment
+- **Audience Analytics** - Demographics, engagement patterns, growth metrics
+- **Trend Analysis** - Real-time performance tracking and forecasting
+- **Brand Safety Monitoring** - Toxicity detection and alerts
 
-- **Text Analysis**: Analyze any text input for sentiment with confidence scores
-- **YouTube Analysis**: Extract and analyze video transcripts and comments
-- **Sentiment Visualization**: Clear visual representation of sentiment with confidence scores
-- **Insights & Trends**: Keyword extraction, summary generation, and sentiment patterns
-- **Responsive Design**: Works on desktop and mobile devices
+### 🔧 **Technical Features**
+- **Real-time Updates** - Live data refresh every 30 seconds
+- **Responsive Design** - Mobile-first, cross-platform compatibility
+- **Professional UI/UX** - Modern design with smooth animations
+- **Export Functionality** - PDF and CSV export capabilities
 
-## Technology Stack
+## 🛠️ Tech Stack
 
-- **Frontend**:
-  - React with TypeScript
-  - TailwindCSS for styling
-  - Vite for development and building
+### **Frontend**
+- **React 18** - Modern React with hooks and functional components
+- **TypeScript** - Type-safe development and better code quality
+- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+- **Recharts** - Professional data visualization library
+- **Lucide React** - Beautiful, customizable icons
 
-- **Backend**:
-  - Supabase Edge Functions (Deno runtime)
-  - Custom BERT sentiment analysis model
+### **Backend & APIs**
+- **Supabase Edge Functions** - Serverless backend with Deno runtime
+- **YouTube Data API v3** - Video analytics and metadata
+- **Custom Trained BERT Model** - AI-powered sentiment analysis
+- **Real-time Database** - Live data synchronization
 
-## Sentiment Analysis Model
+### **Development Tools**
+- **Vite** - Fast build tool and development server
+- **ESLint & Prettier** - Code quality and formatting
+- **Git** - Version control and collaboration
 
-The platform uses a custom BERT-based sentiment analysis model that:
+## 🚀 Quick Start
 
-- Identifies positive, negative, and neutral sentiments
-- Handles negations and context
-- Provides confidence scores
-- Returns normalized sentiment scores from -1 (negative) to +1 (positive)
-- Extracts keywords and generates insights
-
-## Installation
-
-### Prerequisites
-
-- Node.js 16+
+### **Prerequisites**
+- Node.js 18+ 
 - npm or yarn
-- Deno (for local Edge Function development)
-- Supabase CLI (for deploying Edge Functions)
+- Supabase account
+- YouTube Data API key
+- BERT Model Integration for Live Sentiments Anlalysis
 
-### Setup
+### **Installation**
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/CodeByHashir/AI-Powered-Sentiment-Analysis-.git
-   cd AI-Powered-Sentiment-Analysis-
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd Sentiment-Analysis
    ```
 
-2. Install dependencies:
-   ```
+2. **Install dependencies**
+   ```bash
    npm install
    ```
 
-3. **Download the BERT Model File:**
-   
-   The BERT model file (`model.safetensors`) is too large for GitHub. You need to download it separately:
-   
-   **Option A: Download from our model repository**
-   - Download `model.safetensors` from: [Model Download Link]
-   - Place it in: `supabase/functions/analyze-text/model/`
-   
-   **Option B: Use your existing model**
-   - If you have the model file locally, copy it to: `supabase/functions/analyze-text/model/`
-   
-   **File size:** ~417 MB
-   **Required location:** `supabase/functions/analyze-text/model/model.safetensors`
+3. **Environment Setup**
+   ```bash
+   cp .env.example .env
+   # Add your API keys to .env file
+   ```
 
-4. Set up environment variables:
-   ```
-   cp .env.example .env.local
-   ```
-   Edit `.env.local` with your Supabase URL and anon key
-
-5. Run development server:
-   ```
+4. **Start development server**
+   ```bash
    npm run dev
    ```
 
-6. In a separate terminal, run the Edge Function locally:
+5. **Open your browser**
    ```
-   cd supabase/functions/analyze-text
-   deno run --allow-read --allow-net --allow-env index.ts
+   http://localhost:5173
    ```
 
-## Usage
+## 🔑 Environment Variables
 
-### Text Analysis
+Create a `.env` file in the root directory:
 
-1. Enter text in the "Text to Analyze" field
-2. Click "Analyze Text"
-3. View the sentiment results, including:
-   - Sentiment classification (positive, negative, or neutral)
-   - Confidence score
-   - Keywords extracted
-   - Summary insights
+```env
+# YouTube Data API
+VITE_YOUTUBE_API_KEY=your_youtube_api_key_here
 
-### YouTube Analysis
+# Supabase Configuration
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-1. Enter a YouTube URL in the input field
-2. Configure comment analysis options
-3. Click "Analyze YouTube Content"
-4. View comprehensive results including:
-   - Video transcript sentiment
-   - Comment sentiment analysis
-   - Community engagement insights
-   - Trend detection
+# Custom BERT Model Configuration
+VITE_USE_CUSTOM_MODEL=true
+VITE_MODEL_PATH=./models/sentiment-bert
+```
 
-## Deployment
-
-### Frontend
-
-Deploy to Vercel, Netlify or any static hosting service:
+## 📁 Project Structure
 
 ```
+src/
+├── components/          # React components
+│   ├── SentimentDashboard.tsx    # Main dashboard
+│   ├── ComparativeAnalysis.tsx   # Video comparison
+│   └── ...
+├── services/            # API services
+│   ├── youtubeApi.ts   # YouTube API integration
+│   └── ...
+├── types/               # TypeScript interfaces
+├── utils/               # Helper functions
+└── App.tsx             # Main application
+```
+
+## 🎯 Usage Examples
+
+### **Single Video Analysis**
+```typescript
+import { YouTubeApiService } from './services/youtubeApi';
+
+const analysis = await YouTubeApiService.analyzeVideo('VIDEO_ID');
+console.log('Sentiment Score:', analysis.sentiment.score);
+```
+
+### **Comparative Analysis**
+```typescript
+const comparison = await YouTubeApiService.compareVideos('VIDEO1_ID', 'VIDEO2_ID');
+console.log('Performance Score:', comparison.contentScore);
+```
+
+## 📊 Dashboard Features
+
+### **Overview Tab**
+- **Performance Score** - Real-time content quality assessment
+- **Engagement Metrics** - Live engagement rates and ratios
+- **Brand Safety** - Toxicity monitoring and alerts
+- **Viral Potential** - Content virality scoring
+
+### **Performance Tab**
+- **Radar Analysis** - Multi-dimensional performance visualization
+- **Detailed Metrics** - Comprehensive performance breakdown
+- **Real-time Updates** - Live metric calculations
+
+### **Audience Tab**
+- **Demographics** - Viewer insights and engagement patterns
+- **Quality Scoring** - Audience relevance and retention
+- **Growth Opportunities** - Strategic recommendations
+
+### **Trends Tab**
+- **Performance Tracking** - Real-time trend analysis
+- **Volatility Metrics** - Performance stability indicators
+- **Peak Analysis** - Best performance identification
+
+## 🚀 Deployment
+
+### **Vercel (Recommended)**
+```bash
 npm run build
+vercel --prod
 ```
 
-Then deploy the contents of the `dist` folder.
-
-### Edge Function
-
-Deploy to Supabase:
-
-```
-cd supabase/functions/analyze-text
-supabase functions deploy analyze-text
+### **Netlify**
+```bash
+npm run build
+# Drag dist/ folder to Netlify
 ```
 
-## Project Structure
-
-```
-/
-├── src/                  # Frontend source code
-│   ├── components/       # React components
-│   ├── types/            # TypeScript type definitions
-│   ├── services/         # API services
-│   ├── App.tsx           # Main application component
-│   └── main.tsx          # Entry point
-├── supabase/
-│   └── functions/
-│       └── analyze-text/ # Edge Function for sentiment analysis
-│           ├── index.ts  # Entry point for Edge Function
-│           ├── model.ts  # Sentiment analysis model implementation
-│           └── model/    # BERT model files (model.safetensors not included - see Installation)
-├── public/               # Static assets
-└── index.html            # HTML template
+### **GitHub Pages**
+```bash
+npm run build
+# Configure GitHub Actions for auto-deployment
 ```
 
-**Note:** The `model.safetensors` file (417 MB) is not included in this repository due to GitHub's file size limits. See Installation section for download instructions.
+## 🔧 Development
 
-## Core Capabilities
+### **Available Scripts**
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+npm run type-check   # TypeScript type checking
+```
 
-### 1. Text Sentiment Analysis
-- Real-time text processing
-- Confidence scoring
-- Keyword extraction
-- Sentiment classification
+### **Code Quality**
+- **ESLint** - Code linting and best practices
+- **Prettier** - Code formatting
+- **TypeScript** - Type safety and IntelliSense
 
-### 2. YouTube Content Analysis
-- Video transcript extraction
-- Comment sentiment analysis
-- Community engagement metrics
-- Trend detection
+## 📈 Performance Features
 
-### 3. AI-Powered Insights
-- BERT model accuracy
-- Context-aware analysis
-- Comprehensive reporting
-- Exportable results
+### **Real-time Analytics**
+- **Live Updates** - Data refreshes every 30 seconds
+- **Dynamic Calculations** - Real-time metric computation
+- **Performance Scoring** - Live content quality assessment
+- **Trend Analysis** - Continuous performance monitoring
 
-## Future Enhancements
+### **Interactive Visualizations**
+- **Responsive Charts** - Adapt to any screen size
+- **Hover Tooltips** - Detailed information on demand
+- **Smooth Animations** - Professional user experience
+- **Multiple Chart Types** - Bar, line, area, and radar charts
 
-- User authentication for saving analysis results
-- Advanced emotion categorization
-- Multi-language support
-- Real-time sentiment monitoring
-- API rate limiting and optimization
+## 🎨 UI/UX Features
 
-## License
+### **Modern Design**
+- **Clean Interface** - Professional, minimal appearance
+- **Color-coded Metrics** - Intuitive performance indicators
+- **Responsive Layout** - Works on all devices
+- **Smooth Transitions** - Professional animations
 
-MIT License
+### **User Experience**
+- **Loading States** - Clear feedback during operations
+- **Error Handling** - Graceful error management
+- **Performance Alerts** - Smart notification system
+- **Quick Actions** - One-click optimizations
 
-## Acknowledgements
+## 🤝 Contributing
 
-- [Supabase](https://supabase.com/) for the serverless backend
-- [React](https://reactjs.org/) for the frontend framework
-- [TailwindCSS](https://tailwindcss.com/) for styling
-- [BERT Models](https://huggingface.co/) for AI-powered sentiment analysis
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **YouTube Data API** - Video analytics and metadata
+- **Hugging Face** - AI-powered sentiment analysis
+- **Supabase** - Backend infrastructure and edge functions
+- **Recharts** - Professional data visualization
+- **Tailwind CSS** - Utility-first CSS framework
+
+## 📞 Support
+
+For support and questions:
+- Create an issue in this repository
+- Check the documentation
+- Review the code examples
+
+---
+
+**⭐ Star this repository if you found it helpful!**
+
+**🔗 Connect with me:**
+- Portfolio: [Your Portfolio URL]
+- LinkedIn: [Your LinkedIn]
+- GitHub: [Your GitHub]
+
+---
+
+*Built with ❤️ using modern web technologies*

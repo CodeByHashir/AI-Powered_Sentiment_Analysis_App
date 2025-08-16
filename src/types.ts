@@ -84,6 +84,16 @@ export interface SentimentAnalysis {
     offensive: number;
     overall: number;
   };
+  metadata?: {
+    views?: number;
+    likes?: number;
+    dislikes?: number;
+    commentCount?: number;
+    duration?: number;
+    uploadDate?: string;
+    channel?: string;
+    subscribers?: number;
+  };
 }
 
 // Simplified text analysis request
@@ -159,6 +169,62 @@ export interface ComparativeAnalysis {
       uniqueVideo1: string[];
       uniqueVideo2: string[];
     };
+    // Enhanced Analytics & Metrics
+    engagementComparison: {
+      views: { video1: number; video2: number; difference: number };
+      likes: { video1: number; video2: number; difference: number };
+      dislikes: { video1: number; video2: number; difference: number };
+      comments: { video1: number; video2: number; difference: number };
+      engagementRate: { video1: number; video2: number; difference: number };
+    };
+    contentPerformance: {
+      videoLength: { video1: number; video2: number; difference: number };
+      uploadTime: { video1: string; video2: string };
+      thumbnailEffectiveness: { video1: number; video2: number; difference: number };
+    };
+    audienceOverlap: number;
+    // AI-Powered Insights
+    aiInsights: {
+      contentGaps: string[];
+      contentStrategy: string;
+      competitiveAdvantage: string[];
+      improvementAreas: string[];
+      audienceInsights: string;
+      trendAnalysis: string;
+    };
+    // Actionable Recommendations
+    recommendations: {
+      contentStrategy: string[];
+      timingOptimization: string[];
+      audienceTargeting: string[];
+      competitiveResponse: string[];
+      growthOpportunities: string[];
+    };
+    // Industry Benchmarks
+    industryBenchmarks: IndustryBenchmarks;
+  };
+  // AI-Powered Insights
+  aiInsights: {
+    contentGaps: string[];
+    contentStrategy: string;
+    competitiveAdvantage: string[];
+    improvementAreas: string[];
+    audienceInsights: string;
+    trendAnalysis: string;
+  };
+  // Advanced Comparison Features
+  historicalData?: {
+    video1Trend: { date: string; sentiment: number; engagement: number }[];
+    video2Trend: { date: string; sentiment: number; engagement: number }[];
+  };
+  industryBenchmarks: IndustryBenchmarks;
+  // Actionable Recommendations
+  recommendations: {
+    contentStrategy: string[];
+    timingOptimization: string[];
+    audienceTargeting: string[];
+    competitiveResponse: string[];
+    growthOpportunities: string[];
   };
   timestamp: string;
 }
@@ -176,6 +242,16 @@ export interface ExportResult {
   data?: string | Blob;
   filename?: string;
   error?: string;
+}
+
+// Industry benchmarks interface
+export interface IndustryBenchmarks {
+  categoryAverage: number;
+  topPerformers: number;
+  yourRank: string;
+  marketPosition: 'leader' | 'challenger' | 'follower' | 'niche' | 'unknown';
+  totalVideosAnalyzed: number;
+  lastUpdated: string;
 }
 
 // Industry benchmark data

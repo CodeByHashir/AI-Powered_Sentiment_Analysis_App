@@ -1,8 +1,6 @@
 import React from 'react';
 import { SentimentAnalysis, SentimentCategory } from '../types';
 import { Clock, Globe, FileText, TrendingUp, TrendingDown, Minus, CheckCircle, XCircle, AlertCircle, Youtube, MessageCircle, Eye, ThumbsUp, Calendar } from 'lucide-react';
-import SentimentMeter from './SentimentMeter';
-import SentimentStats from './SentimentStats';
 import EnhancedSentimentStats from './EnhancedSentimentStats';
 import YouTubeCommentsList from './YouTubeCommentsList';
 
@@ -184,15 +182,22 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({ analysis }) => {
 
         {/* Main Sentiment Display */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Sentiment Meter */}
+          {/* Sentiment Score Display */}
           <div className="lg:col-span-2">
             <div className="bg-gray-100 rounded-xl p-6 transition-colors duration-300 border-2 border-gray-200 shadow-md">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Sentiment Score</h3>
-              <SentimentMeter 
-                score={analysis.sentiment.score} 
-                label={analysis.sentiment.label} 
-                confidence={analysis.sentiment.confidence} 
-              />
+              <div className="text-center mb-6">
+                <div className="text-4xl font-bold text-gray-900 mb-2">
+                  {analysis.sentiment.score > 0 ? '+' : ''}{analysis.sentiment.score.toFixed(2)}
+                </div>
+                <div className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${
+                  analysis.sentiment.label === 'positive' ? 'bg-green-100 text-green-800' :
+                  analysis.sentiment.label === 'negative' ? 'bg-red-100 text-red-800' :
+                  'bg-yellow-100 text-yellow-800'
+                }`}>
+                  {analysis.sentiment.label.charAt(0).toUpperCase() + analysis.sentiment.label.slice(1)}
+                </div>
+              </div>
               <div className="mt-6 grid grid-cols-2 gap-6">
                 <div className="text-center bg-white p-4 rounded-lg border-2 border-blue-200 shadow-sm">
                   <div className="text-3xl font-bold text-blue-600">{Math.round(analysis.sentiment.confidence * 100)}%</div>
@@ -313,7 +318,21 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({ analysis }) => {
             
             {/* Regular Comments Display */}
             {analysis.category !== 'youtube' && analysis.comments && (
-              <SentimentStats comments={analysis.comments} />
+              <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <h4 className="font-medium text-gray-900 mb-3">Comments Overview</h4>
+                <div className="space-y-2">
+                  {analysis.comments.slice(0, 5).map((comment, index) => (
+                    <div key={index} className="text-sm text-gray-600 border-l-2 border-gray-200 pl-3">
+                      {comment.text}
+                    </div>
+                  ))}
+                  {analysis.comments.length > 5 && (
+                    <div className="text-xs text-gray-500 mt-2">
+                      +{analysis.comments.length - 5} more comments
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
           </div>
         )}

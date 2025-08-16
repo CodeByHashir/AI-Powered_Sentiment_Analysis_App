@@ -458,4 +458,117 @@ export class YouTubeApiService {
     
     return result;
   }
+
+  // Get industry benchmarks for competitive analysis
+  static async getIndustryBenchmarks(categoryId?: string): Promise<IndustryBenchmarks> {
+    try {
+      this.validateApiKey();
+      
+      // Use your existing API key and base URL
+      const url = categoryId 
+        ? `${YOUTUBE_API_BASE}/videos?part=statistics&chart=mostPopular&videoCategoryId=${categoryId}&maxResults=50&key=${YOUTUBE_API_KEY}`
+        : `${YOUTUBE_API_BASE}/videos?part=statistics&chart=mostPopular&maxResults=50&key=${YOUTUBE_API_KEY}`;
+      
+      console.log('Fetching industry benchmarks from:', url);
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Industry benchmarks API error:', response.status, errorText);
+        throw new Error(`API error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (!data.items || data.items.length === 0) {
+        throw new Error('No trending videos found for benchmarks');
+      }
+      
+      // Calculate real industry averages using your existing data structure
+      const videos = data.items;
+      const avgViews = this.calculateAverageViews(videos);
+      const avgLikes = this.calculateAverageLikes(videos);
+      const avgEngagement = this.calculateEngagementRate(videos);
+      
+      console.log('Industry benchmarks calculated:', {
+        avgViews: avgViews.toLocaleString(),
+        avgLikes: avgLikes.toLocaleString(),
+        avgEngagement: (avgEngagement * 100).toFixed(2) + '%'
+      });
+      
+      return {
+        categoryAverage: avgEngagement,
+        topPerformers: Math.max(...videos.map(v => parseInt(v.statistics.viewCount || '0'))),
+        yourRank: 'Calculated dynamically',
+        marketPosition: this.determineMarketPosition(avgEngagement),
+        totalVideosAnalyzed: videos.length,
+        lastUpdated: new Date().toISOString()
+      };
+    } catch (error) {
+      console.error('Error fetching industry benchmarks:', error);
+      // Return fallback data if API fails
+      return {
+        categoryAverage: 0.15,
+        topPerformers: 1000000,
+        yourRank: 'Data unavailable',
+        marketPosition: 'unknown',
+        totalVideosAnalyzed: 0,
+        lastUpdated: new Date().toISOString()
+      };
+    }
+  }
+
+  // Get category-specific trending videos
+  static async getCategoryTrendingVideos(categoryId: string, maxResults: number = 25): Promise<any[]> {
+    try {
+      this.validateApiKey();
+      
+      const url = `${YOUTUBE_API_BASE}/videos?part=snippet,statistics&chart=mostPopular&videoCategoryId=${categoryId}&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`;
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`Category API error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      return data.items || [];
+    } catch (error) {
+      console.error('Error fetching category videos:', error);
+      return [];
+    }
+  }
+
+  // Calculate average views from video array
+  private static calculateAverageViews(videos: any[]): number {
+    const views = videos.map(v => parseInt(v.statistics.viewCount || '0'));
+    return views.reduce((sum, view) => sum + view, 0) / views.length;
+  }
+
+  // Calculate average likes from video array
+  private static calculateAverageLikes(videos: any[]): number {
+    const likes = videos.map(v => parseInt(v.statistics.likeCount || '0'));
+    return likes.reduce((sum, like) => sum + like, 0) / likes.length;
+  }
+
+  // Calculate average engagement rate from video array
+  private static calculateEngagementRate(videos: any[]): number {
+    return videos.reduce((total, video) => {
+      const views = parseInt(video.statistics.viewCount || '0');
+      const likes = parseInt(video.statistics.likeCount || '0');
+      const comments = parseInt(video.statistics.commentCount || '0');
+      
+      if (views === 0) return total;
+      return total + ((likes + comments) / views);
+    }, 0) / videos.length;
+  }
+
+  // Determine market position based on engagement rate
+  private static determineMarketPosition(engagementRate: number): 'leader' | 'challenger' | 'follower' | 'niche' {
+    if (engagementRate > 0.15) return 'leader';
+    if (engagementRate > 0.10) return 'challenger';
+    if (engagementRate > 0.05) return 'follower';
+    return 'niche';
+  }
 } 
