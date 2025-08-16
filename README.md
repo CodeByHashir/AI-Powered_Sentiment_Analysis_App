@@ -100,6 +100,8 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 # Custom BERT Model Configuration
 VITE_USE_CUSTOM_MODEL=true
 VITE_MODEL_PATH=./models/sentiment-bert
+
+> **📥 Model Setup Required**: This project uses a custom-trained BERT model (417.67 MB). See [MODEL_SETUP.md](./MODEL_SETUP.md) for download and installation instructions.
 ```
 
 ## 📁 Project Structure
