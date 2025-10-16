@@ -264,9 +264,9 @@ For support and questions:
 **⭐ Star this repository if you found it helpful!**
 
 **🔗 Connect with me:**
-- Portfolio: [[Your Portfolio URL](https://www.hashirahmed.com/)]
-- LinkedIn: [[Your LinkedIn](https://www.linkedin.com/in/hashirahmed07/)]
-- GitHub: [[Your GitHub](https://github.com/CodeByHashir)]
+- Portfolio: [[Portfolio](https://www.hashirahmed.com/)]
+- LinkedIn: [[LinkedIn](https://www.linkedin.com/in/hashirahmed07/)]
+- GitHub: [[GitHub](https://github.com/CodeByHashir)]
 - Whatsapp: +44 07879 3299 09
 
 ---
